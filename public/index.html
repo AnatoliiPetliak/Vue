@@ -1,17 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
+
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+</head>
+
+<body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <div class="container demo">
+        <div class="content">
+            <div id="large-header" class="large-header">
+                <canvas id="demo-canvas"></canvas>
+                <h1 class="main-title"><span class="thin">DISCOVER</span> CINEMAX</h1>
+            </div>
+
+        </div>
+    </div>
+    <ul class="menu">
+        <li><a href="">NEW</a></li>
+        <li>
+            <a href="">HALL</a>
+            <ul class="drop-menu">
+                <li><a href="">RED</a></li>
+                <li><a href="">GREEN</a></li>
+                <li><a href="">BLUE</a></li>
+                <li><a href="">PURPLE</a></li>
+            </ul>
+        </li>
+        <li><a href="" target="_blank">Home</a></li>
+        <li><a href="" target="_blank">Film genres</a>
+            <ul class="drop-menu">
+                <li><a href="">Action</a></li>
+                <li><a href="">Adventure</a></li>
+                <li><a href="">Comedy</a></li>
+                <li><a href="">Drama</a></li>
+                <li><a href="">Science</a></li>
+                <li><a href="">Noir</a></li>
+                <li><a href="">Crime</a></li>
+            </ul>
+        </li>
+
+        <li><a href="" target="_blank">LogIn</a></li>
+        <li>
+            <a href="" target="_blank">Register</a>
+        </li>
+    </ul>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-  </body>
+</body>
+
 </html>
