@@ -2,19 +2,17 @@
   <div class="home">
     <hr />
     <div class="catalog-list">
-      <movie-details
-        v-for="(movie, index) in movies"
+      <MovieDetails
+        v-for="(movieSession, index) in movieSessionsExtended"
         :key="index"
-        v-bind:movie="movie"
-        @sentMovie="showChildArticle"
+        v-bind:movieSession="movieSession"
+        v-on:sentMovie="showChildArticle"
       />
-
       <MovieSessionList
         :movieSessions="movieSessionsExtended"
         @select-session="selectMovieSession"
       />
     </div>
-    {{ selectedMovieSession.movieId || "not selected" }}
   </div>
 </template>
 
@@ -25,6 +23,7 @@ import MovieSessionList from "../components/MovieSessionList";
 
 export default {
   name: "MovieCatalog",
+  components: { MovieDetails, MovieSessionList },
   data() {
     return {
       isInfoPopupVisible: false,
@@ -70,95 +69,6 @@ export default {
           year: 1985,
           director: "Demaka",
           plot: "Dawn of developer."
-        },
-        {
-          id: 6,
-          image: "6.jpg",
-          name: "Avangard",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 7,
-          image: "7.jpg",
-          name: "Kalone",
-          year: 1983,
-          director: "Anatoliy Petlayk",
-          plot: "Story about"
-        },
-        {
-          id: 8,
-          image: "8.jpg",
-          name: "Frida Kalo",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-
-        {
-          id: 9,
-          image: "9.jpg",
-          name: "Klaustrofobu",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 10,
-          image: "10.jpg",
-          name: "House 3",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 11,
-          image: "11.jpg",
-          name: "Mulan",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 12,
-          image: "12.jpg",
-          name: "Avangard",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 13,
-          image: "13.jpg",
-          name: "Klaustrofobu",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 14,
-          image: "14.jpg",
-          name: "House 3",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 15,
-          image: "15.jpg",
-          name: "Mulan",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 16,
-          image: "16.jpg",
-          name: "Avangard",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
         }
       ],
       movieSessions: [
@@ -178,68 +88,22 @@ export default {
         },
         {
           movieId: 4,
-          movieTime: ["20:00", "23:45"]
+          movieTime: ["10:00", "20:00", "23:45"]
         },
         {
           movieId: 5,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 6,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 7,
-          movieTime: ["12:00", "15:45"]
-        },
-
-        {
-          movieId: 8,
-          movieTime: ["20:00", "23:45"]
-        },
-
-        {
-          movieId: 9,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 10,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 11,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 12,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 13,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 14,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 15,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 16,
-          movieTime: ["20:00", "23:45"]
+          movieTime: ["10.00", "20:00", "23:45"]
         }
       ]
     };
   },
-  components: { MovieDetails, MovieSessionList },
   methods: {
     selectMovieSession(session) {
+      console.log("hello");
       this.selectedMovieSession = session;
     },
     getMovieName(id) {
-      return this.movies.find(m => m.id == id).name;
+      return this.movies.find(m => m.id == id);
     },
     showPopupInfo() {
       this.isInfoPopupVisible = true;
@@ -255,7 +119,7 @@ export default {
     movieSessionsExtended() {
       return this.movieSessions.map(m => ({
         ...m,
-        movieName: this.getMovieName(m.movieId)
+        movie: this.getMovieName(m.movieId)
       }));
     }
   }

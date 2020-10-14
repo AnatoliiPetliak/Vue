@@ -21,5 +21,10 @@ export default {
   }
 };
 </script>
+<style>
+.list {
+  background: white;
+  text-align: center;
+}
+</style>
 
-<style lang="scss" scoped>

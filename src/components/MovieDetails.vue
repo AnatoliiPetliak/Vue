@@ -4,32 +4,36 @@
       <popup
         v-if="isInfoPopupVisible"
         @close-popup="closeInfoPopup"
-        :popupTitle="movie.name"
+        :popupTitle="movieSession.movie.name"
       >
         <div>
           <img
             class="movie-detai-image"
-            v-bind:src="require('../assets/images/' + movie.image)"
+            v-bind:src="require('../assets/images/' + movieSession.movie.image)"
             alt="img"
           />
         </div>
 
         <div>
-          <p>{{ movie.name }}</p>
-          <p>{{ movie.year }}</p>
-          <p>{{ movie.director }}</p>
-          <p>{{ movie.plot }}</p>
+          <p>{{ movieSession.movie.name }}</p>
+          <p>{{ movieSession.movie.year }}</p>
+          <p>{{ movieSession.movie.director }}</p>
+          <p>{{ movieSession.movie.plot }}</p>
         </div>
       </popup>
     </div>
 
     <img
       class="movie-detai-image"
-      v-bind:src="require('../assets/images/' + movie.image)"
+      v-bind:src="require('../assets/images/' + movieSession.movie.image)"
       alt="img"
     />
-    <span>Movie session</span>
-    <span>Movie session</span>
+
+    <h2>
+      <span>{{ movieSession.movie.name }}</span>
+      <span>{{ movieSession.movieTime[1] }}</span>
+      <span>{{ movieSession.movieTime[0] }}</span>
+    </h2>
 
     <button class="catalog-show-movie" @click="showPopupMovie">
       Show info
@@ -43,7 +47,7 @@ import popup from "../components/popup/popup";
 
 export default {
   name: "MovieDetails",
-  props: ["movie"],
+  props: ["movieSession"],
   data() {
     return {
       isInfoPopupVisible: false
@@ -58,10 +62,12 @@ export default {
       this.$emit("closePopup", !this.value);
     },
     sendDataToParent() {
-      this.$emit("sentMovie", this.movie.id);
+      this.$emit("sentMovie", this.movieSession.movie.id);
+      console.log("SentBTN works");
     },
     showPopupMovie() {
       this.isInfoPopupVisible = true;
+      console.log("ShowPOpup  works");
     },
     closeInfoPopup() {
       this.isInfoPopupVisible = false;
@@ -73,10 +79,8 @@ export default {
 <style lang="scss">
 .movie-detail {
   flex-basis: 25%;
-  box-shadow: 0 0 8px 0 #e0e0e0;
   padding: 16px;
   margin-bottom: 16px;
-  color: #e0e0e0;
 }
 .movie-detai-image {
   width: 200px;

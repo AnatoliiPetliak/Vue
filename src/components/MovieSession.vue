@@ -1,7 +1,15 @@
 <template>
   <div>
-    <span>{{ movieSession.movieName }}</span>
-    <span>{{ movieSession.movieTime[0] }}</span>
+    <span class="movie-name">{{ movieSession.movie.name }}</span>
+    <div v-for="(sessionTime, index) in movieSession.movieTime" :key="index">
+      <router-link
+        :to="{
+          name: 'Hall',
+          params: { movieId: movieSession.movie.id, sessionIndex: index }
+        }"
+        >{{ sessionTime }}</router-link
+      >
+    </div>
   </div>
 </template>
 
@@ -12,5 +20,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.movie-name {
+}
 </style>

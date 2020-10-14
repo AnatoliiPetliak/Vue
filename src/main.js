@@ -6,6 +6,7 @@ import 'material-components-web'
 import 'material-design-icons'
 
 
+
 Vue.config.productionTip = false
 
 new Vue({

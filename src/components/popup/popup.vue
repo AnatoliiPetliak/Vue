@@ -34,10 +34,10 @@ export default {
     }
   },
   mounted() {
-    let vm = this;
+    let closePopup = this;
     document.addEventListener("click", function(item) {
-      if (item.target === vm.$refs["popup-wrapper"]) {
-        vm.closeMovieInfo();
+      if (item.target === closePopup.$refs["popup-wrapper"]) {
+        closePopup.closeMovieInfo();
       }
     });
   }
