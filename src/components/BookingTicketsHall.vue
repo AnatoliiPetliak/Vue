@@ -8,15 +8,10 @@
         class="seat"
         v-for="(item, index) in hallSeats"
         :key="index"
-        @click="smth"
-        :class="{ active: isActive }"
+        :class="{ picked: item.picked, booked: item.isBooked }"
+        @click="chooseSeat(item)"
       >
-        <seat
-          class="initial"
-          :seat="item"
-          @click="chooseSeat"
-          :class="{ active: (picked = !picked) }"
-        />
+        <seat class="initial" :seat="item" />
       </div>
     </div>
   </div>
@@ -34,8 +29,6 @@ export default {
   },
   data() {
     return {
-      picked: false,
-      isActive: false,
       movie: {
         name: "5th element"
       },
@@ -44,29 +37,34 @@ export default {
         {
           seatNumber: 1,
           seatRow: 1,
-          seatType: "standart"
+          seatType: "standart",
+          picked: false
         },
         {
           seatNumber: 2,
           seatRow: 1,
           seatType: "standart",
-          isBooked: true
+          isBooked: true,
+          picked: false
         },
         {
           seatNumber: 3,
           seatRow: 1,
-          seatType: "standart"
+          seatType: "standart",
+          picked: false
         },
         {
           seatNumber: 4,
           seatRow: 1,
           seatType: "standart",
-          isBooked: true
+          isBooked: true,
+          picked: false
         },
         {
           seatNumber: 5,
           seatRow: 1,
-          seatType: "standart"
+          seatType: "standart",
+          picked: false
         }
       ]
     };
@@ -75,14 +73,8 @@ export default {
     chooseSeat(seat) {
       if (!seat.isBooked) {
         seat.picked = !seat.picked;
-        // this.isActive = !this.isActive;
-        console.log(seat.seatNumber);
         this.$emit("choose-seat", seat);
       }
-    },
-
-    smth() {
-      this.isActive = !this.isActive;
     }
   }
 };
@@ -96,15 +88,12 @@ h1 {
 h1 > h2 {
   text-align: center;
 }
-.picked {
-  color: #161414;
-}
 .active {
   background-color: rgba(29, 31, 31, 0.6);
 }
 .monitor {
   text-align: center;
-  width: 600px;
+  width: 80%;
   height: 50px;
 
   border: solid 1em rgb(131, 108, 108);
@@ -117,8 +106,8 @@ h1 > h2 {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 900px;
-  height: 500px;
+  width: 100%;
+  height: 80%;
   color: aliceblue;
   margin: 60px;
   background: rgba(67, 89, 107, 0.6);
@@ -153,5 +142,14 @@ h1 > h2 {
   border-width: 5px;
   margin: 3px;
   cursor: pointer;
+}
+.picked {
+  color: #161414;
+  background-color: rgba(29, 31, 31, 0.6);
+}
+
+.booked {
+  color: #161414;
+  background-color: yellow;
 }
 </style>

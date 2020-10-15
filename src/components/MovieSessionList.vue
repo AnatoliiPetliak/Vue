@@ -2,9 +2,7 @@
   <div class="movie-session-list">
     <div class="list" v-for="(item, index) in movieSessions" :key="index">
       <MovieDetails
-        v-for="(movieSession, index) in movieSessionsExtended"
-        :key="index"
-        v-bind:movieSession="movieSession"
+        v-bind:movieSession="item"
         v-on:sentMovie="showChildArticle"
       />
       <img
@@ -26,10 +24,26 @@ import MovieSession from "./MovieSession";
 
 export default {
   name: "MovieSessionList",
-  props: ["movieSessions"],
+  props: ["movieSessions", "movies"],
   components: {
     MovieSession,
     MovieDetails
+  },
+  methods: {
+    selectMovieSession(session) {
+      console.log("hello");
+      this.selectedMovieSession = session;
+    },
+
+    showPopupInfo() {
+      this.isInfoPopupVisible = true;
+    },
+    closePopupInfo() {
+      this.isInfoPopupVisible = false;
+    },
+    showChildArticle(data) {
+      console.log(data);
+    }
   }
 };
 </script >

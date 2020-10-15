@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div :class="{ picked: seat.picked }">
-      {{ seat.seatNumber }}/{{ seat.seatRow }}
-    </div>
+    <div>{{ seat.seatNumber }}/{{ seat.seatRow }}</div>
   </div>
 </template>
 
