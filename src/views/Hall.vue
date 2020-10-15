@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <h2>
-      Hello from Hall!
-    </h2>
+  <div class="tickets-hall">
     <BookingTicketsHall />
   </div>
 </template>
@@ -17,7 +14,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2 {
-  color: aliceblue;
+.tickets-hall {
+  display: flex;
+  justify-content: center;
+
+  background-color: rgba(63, 86, 95, 0.6);
 }
 </style>

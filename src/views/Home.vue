@@ -2,12 +2,6 @@
   <div class="home">
     <hr />
     <div class="catalog-list">
-      <MovieDetails
-        v-for="(movieSession, index) in movieSessionsExtended"
-        :key="index"
-        v-bind:movieSession="movieSession"
-        v-on:sentMovie="showChildArticle"
-      />
       <MovieSessionList
         :movieSessions="movieSessionsExtended"
         @select-session="selectMovieSession"
@@ -17,13 +11,12 @@
 </template>
 
 <script>
-import MovieDetails from "../components/MovieDetails";
 import MovieSessionList from "../components/MovieSessionList";
 // @ is an alias to /src
 
 export default {
   name: "MovieCatalog",
-  components: { MovieDetails, MovieSessionList },
+  components: { MovieSessionList },
   data() {
     return {
       isInfoPopupVisible: false,
@@ -125,6 +118,7 @@ export default {
   }
 };
 </script>
+
 <style lang="scss">
 .home {
   max-width: 900px;

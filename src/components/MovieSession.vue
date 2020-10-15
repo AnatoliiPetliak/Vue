@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <span class="movie-name">{{ movieSession.movie.name }}</span>
-    <div v-for="(sessionTime, index) in movieSession.movieTime" :key="index">
+  <div class="main-film-wrapper">
+    <h2 class="movie-name">{{ movieSession.movie.name }}</h2>
+    <div
+      class="movie-session"
+      v-for="(sessionTime, index) in movieSession.movieTime"
+      :key="index"
+    >
       <router-link
         :to="{
           name: 'Hall',
@@ -20,7 +24,21 @@ export default {
 };
 </script>
 
-<style>
-.movie-name {
+<style lang="scss" scoped>
+h2 {
+  color: aliceblue;
+}
+.main-film-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.movie-session {
+  display: flex;
+  color: red;
+  font-size: larger;
+  font-weight: bolder;
+  cursor: pointer;
 }
 </style>

@@ -1,5 +1,9 @@
 <template>
-  <div>{{ seat.seatNumber }}/{{ seat.seatRow }}</div>
+  <div>
+    <div :class="{ picked: seat.picked }">
+      {{ seat.seatNumber }}/{{ seat.seatRow }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -8,4 +12,7 @@ export default {
   props: ["seat"]
 };
 </script>
+
+<style scoped>
+</style>
 

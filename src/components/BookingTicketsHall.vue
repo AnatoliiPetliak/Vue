@@ -1,17 +1,22 @@
 <template>
   <div class="booking-tiscets-hall-container">
+    <div class="monitor">CINEMA SCREEN</div>
     <h1>{{ movie.name }}</h1>
     <h2>{{ movieSessionTime }}</h2>
-    <!-- <div class="booking-header"></div>
-    <div class="monitor"></div> -->
-    <div class="monitor">CINEMA SCREEN</div>
     <div class="theatre">
-      <div class="cinema-seats left">
-        <div class="cinema-row row-1">
-          <div class="seat" v-for="(item, index) in hallSeats" :key="index">
-            <Seat :seat="item" @click.native="chooseSeat(item)"> </Seat>
-          </div>
-        </div>
+      <div
+        class="seat"
+        v-for="(item, index) in hallSeats"
+        :key="index"
+        @click="smth"
+        :class="{ active: isActive }"
+      >
+        <seat
+          class="initial"
+          :seat="item"
+          @click="chooseSeat"
+          :class="{ active: (picked = !picked) }"
+        />
       </div>
     </div>
   </div>
@@ -23,11 +28,14 @@ import Seat from "./Seat";
 export default {
   name: "CinemaHall",
   props: ["movieSession"],
+
   components: {
     Seat
   },
   data() {
     return {
+      picked: false,
+      isActive: false,
       movie: {
         name: "5th element"
       },
@@ -66,22 +74,34 @@ export default {
   methods: {
     chooseSeat(seat) {
       if (!seat.isBooked) {
+        seat.picked = !seat.picked;
+        // this.isActive = !this.isActive;
+        console.log(seat.seatNumber);
         this.$emit("choose-seat", seat);
       }
     },
 
     smth() {
-      console.log(1);
+      this.isActive = !this.isActive;
     }
-
-    //     $('.cinema-seats .seat').on('click', function() {
-    //   $(this).toggleClass('active');
-    // }
   }
 };
 </script>
 
 <style lang="scss">
+h1 {
+  font-size: 24px;
+  color: aliceblue;
+}
+h1 > h2 {
+  text-align: center;
+}
+.picked {
+  color: #161414;
+}
+.active {
+  background-color: rgba(29, 31, 31, 0.6);
+}
 .monitor {
   text-align: center;
   width: 600px;
@@ -92,99 +112,46 @@ export default {
   border-radius: 0.5em;
 }
 .booking-tiscets-hall-container {
-  display: flex;
-  justify-content: space-around;
   position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 900px;
   height: 500px;
   color: aliceblue;
   margin: 60px;
-  background: rgb(67, 89, 107);
-  border-block-start-color: red;
-  border-width: 3px;
+  background: rgba(67, 89, 107, 0.6);
+
   border-radius: 25px;
-}
-.main-hall {
-  background-color: yellow;
-  border: violet;
-  border-radius: 5px;
-  box-shadow: white;
-  color: black;
 }
 
 .theatre {
   display: flex;
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  justify-content: space-around;
+  align-items: center;
 }
 
-.cinema-seats {
-  display: flex;
-
-  .seat {
-    cursor: pointer;
-
-    &:hover:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 7px;
-    }
-
-    &.active {
-      color: black;
-    }
-
-    &.active:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 7px;
-    }
-  }
+.cinema-seats:hover {
+  background-color: rgb(116, 116, 199);
+  transition: floor($number: 4);
 }
-
-// Left Seats
-.left {
-  .cinema-row {
-    transform: skew(-15deg);
-    margin: 0 6px;
-  }
-
-  .seat {
-    width: 35px;
-    height: 50px;
-    border-radius: 7px;
-    background: linear-gradient(
-      to top,
-      #761818,
-      #761818,
-      #761818,
-      #761818,
-      #761818,
-      #b54041,
-      #f3686a
-    );
-    margin-bottom: 10px;
-    transform: skew(20deg);
-    margin-top: -32px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  }
-
-  .row-2 {
-    transform: skew(-13deg);
-
-    .seat {
-      transform: skew(18deg);
-    }
-  }
+.seat:hover {
+  background-color: rgb(31, 38, 43);
+  text-decoration-color: #161414;
+}
+.seat {
+  text-align: center;
+  font-size: 24px;
+  color: aliceblue;
+  background: rgb(147, 147, 231);
+  width: 50px;
+  height: 100px;
+  border-radius: 10px;
+  border: black;
+  border-block-end-color: brown;
+  border-width: 5px;
+  margin: 3px;
+  cursor: pointer;
 }
 </style>
