@@ -3,12 +3,14 @@
     <div class="list" v-for="(item, index) in movieSessions" :key="index">
       <MovieDetails
         v-bind:movieSession="item"
-        v-on:sentMovie="showChildArticle"
+        v-show="panelShow"
+        @close-modal="hidePanel"
       />
       <img
         class="movie-image"
         v-bind:src="require('../assets/images/' + item.movie.image)"
         alt="img"
+        @click="showPanel"
       />
       <MovieSession
         v-bind:movieSession="item"
@@ -29,20 +31,17 @@ export default {
     MovieSession,
     MovieDetails
   },
+  data() {
+    return {
+      panelShow: false
+    };
+  },
   methods: {
-    selectMovieSession(session) {
-      console.log("hello");
-      this.selectedMovieSession = session;
+    showPanel() {
+      this.panelShow = true;
     },
-
-    showPopupInfo() {
-      this.isInfoPopupVisible = true;
-    },
-    closePopupInfo() {
-      this.isInfoPopupVisible = false;
-    },
-    showChildArticle(data) {
-      console.log(data);
+    hidePanel() {
+      this.panelShow = false;
     }
   }
 };

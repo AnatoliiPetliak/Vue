@@ -1,6 +1,5 @@
 <template>
   <div class="booking-tiscets-hall-container">
-    <div class="monitor">CINEMA SCREEN</div>
     <h1>{{ movie.name }}</h1>
     <h2>{{ movieSessionTime }}</h2>
     <div class="theatre">
@@ -91,15 +90,7 @@ h1 > h2 {
 .active {
   background-color: rgba(29, 31, 31, 0.6);
 }
-.monitor {
-  text-align: center;
-  width: 80%;
-  height: 50px;
 
-  border: solid 1em rgb(131, 108, 108);
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 0.5em;
-}
 .booking-tiscets-hall-container {
   position: fixed;
   display: flex;

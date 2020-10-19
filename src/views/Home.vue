@@ -92,7 +92,6 @@ export default {
   },
   methods: {
     selectMovieSession(session) {
-      console.log("hello");
       this.selectedMovieSession = session;
     },
     getMovieName(id) {

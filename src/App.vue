@@ -4,13 +4,19 @@
       <div class="content">
         <div id="large-header" class="large-header">
           <canvas id="demo-canvas"></canvas>
-          <h1 class="main-title"><span class="thin">DISCOVER</span> CINEMAX</h1>
+          <router-link to="/">
+            <h1 class="main-title">
+              <span class="thin">DISCOVER</span> CINEMAX
+            </h1>
+          </router-link>
         </div>
       </div>
     </div>
     <router-view />
   </div>
 </template>
+
+
 
 <style lang="scss">
 body {
