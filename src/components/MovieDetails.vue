@@ -38,13 +38,15 @@
 <script>
 export default {
   name: "MovieDetails",
-  props: ["movieSession"]
+  props: ["movieSession"],
+  data() {
+    return {};
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .popup {
-  position: fixed;
   height: 600;
   width: 600px;
   background: #504a4aa4;
@@ -54,8 +56,6 @@ export default {
 }
 
 .popup-content {
-  display: block;
-
   text-align: center;
 }
 

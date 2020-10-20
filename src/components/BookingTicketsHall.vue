@@ -5,6 +5,7 @@
 
     <div class="theatre">
       <div
+        v-bind="$attrs"
         class="seat"
         v-for="(item, index) in hallSeats"
         :key="index"
