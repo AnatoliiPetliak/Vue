@@ -46,20 +46,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.popup {
-  height: 600;
-  width: 600px;
-  background: #504a4aa4;
-  background-size: 100%;
-  box-shadow: 0 0 17px 0 #e7e7e7;
-  text-align: right;
-}
-
-.popup-content {
-  text-align: center;
-}
+$font-stack: Helvetica, sans-serif;
 
 .popup-wrapper {
+  font: 100% $font-stack;
   background: rgba(64, 64, 64, 0.8);
   display: flex;
   justify-content: center;
@@ -69,13 +59,27 @@ export default {
   top: 0;
   left: 0;
   bottom: 0;
-}
-#btn {
-  font-size: 45px;
-  color: rgb(180, 30, 30);
-}
-.md-inactive {
-  color: rgba(0, 0, 0, 0.26);
-  cursor: pointer;
+
+  .popup {
+    height: 600px;
+    width: 600px;
+    background: #504a4aa4;
+    background-size: 100%;
+    box-shadow: 0 0 17px 0 #e7e7e7;
+    text-align: right;
+
+    #btn {
+      font-size: 45px;
+      color: rgb(180, 30, 30);
+    }
+    .md-inactive {
+      color: rgba(0, 0, 0, 0.26);
+      cursor: pointer;
+    }
+
+    .popup-content {
+      text-align: center;
+    }
+  }
 }
 </style>

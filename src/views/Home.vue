@@ -120,7 +120,7 @@ export default {
 </script>
 
 <style lang="scss">
-.home {
+.catalog-list {
   max-width: 900px;
   margin: 0 auto;
 }

@@ -41,4 +41,7 @@ h2 {
   font-weight: bolder;
   cursor: pointer;
 }
+.blue {
+  display: none;
+}
 </style>

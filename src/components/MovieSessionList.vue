@@ -14,7 +14,7 @@
       <MovieSession
         v-bind="{
           ...$attrs,
-          onInput: event => $emit('select-session')
+          onClick: event => $emit('select-session')
         }"
         :movieSession="item"
       />
