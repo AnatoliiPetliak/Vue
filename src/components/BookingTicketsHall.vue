@@ -2,6 +2,7 @@
   <div class="booking-tiscets-hall-container">
     <h1>{{ movie.name }}</h1>
     <h2>{{ movieSessionTime }}</h2>
+
     <div class="theatre">
       <div
         class="seat"
@@ -50,7 +51,8 @@ export default {
           seatNumber: 3,
           seatRow: 1,
           seatType: "standart",
-          picked: false
+          picked: false,
+          isBooked: true
         },
         {
           seatNumber: 4,
@@ -79,7 +81,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 h1 {
   font-size: 24px;
   color: aliceblue;
@@ -92,17 +94,14 @@ h1 > h2 {
 }
 
 .booking-tiscets-hall-container {
-  position: fixed;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 50%;
   height: 80%;
   color: aliceblue;
-  margin: 60px;
   background: rgba(67, 89, 107, 0.6);
-
   border-radius: 25px;
 }
 
@@ -112,35 +111,26 @@ h1 > h2 {
   align-items: center;
 }
 
-.cinema-seats:hover {
-  background-color: rgb(116, 116, 199);
-  transition: floor($number: 4);
-}
-.seat:hover {
-  background-color: rgb(31, 38, 43);
-  text-decoration-color: #161414;
-}
 .seat {
   text-align: center;
   font-size: 24px;
   color: aliceblue;
-  background: rgb(147, 147, 231);
+  background: rgb(87, 87, 87);
   width: 50px;
   height: 100px;
   border-radius: 10px;
-  border: black;
-  border-block-end-color: brown;
+
   border-width: 5px;
   margin: 3px;
   cursor: pointer;
 }
 .picked {
-  color: #161414;
   background-color: rgba(29, 31, 31, 0.6);
 }
 
 .booked {
-  color: #161414;
-  background-color: yellow;
+  background-color: rgb(150, 150, 150);
+  pointer-events: none;
+  opacity: 0.5;
 }
 </style>

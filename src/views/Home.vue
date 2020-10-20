@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <hr />
     <div class="catalog-list">
+      <navBar />
       <MovieSessionList
         :movieSessions="movieSessionsExtended"
         @select-session="selectMovieSession"
@@ -12,11 +12,12 @@
 
 <script>
 import MovieSessionList from "../components/MovieSessionList";
+import navBar from "../Bar/navBar";
 // @ is an alias to /src
 
 export default {
   name: "MovieCatalog",
-  components: { MovieSessionList },
+  components: { MovieSessionList, navBar },
   data() {
     return {
       isInfoPopupVisible: false,
@@ -122,12 +123,5 @@ export default {
 .home {
   max-width: 900px;
   margin: 0 auto;
-}
-
-.catalog-list {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
 }
 </style>

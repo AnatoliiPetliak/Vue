@@ -10,6 +10,7 @@
             </h1>
           </router-link>
         </div>
+        <hr />
       </div>
     </div>
     <router-view />
@@ -25,7 +26,8 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: rgb(86, 93, 94);
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
-  background-image: no-repeat;
+  background-size: cover;
+  overflow: auto;
 }
 
 .app {

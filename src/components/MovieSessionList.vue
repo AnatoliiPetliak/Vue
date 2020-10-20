@@ -13,8 +13,11 @@
         @click="showPanel"
       />
       <MovieSession
-        v-bind:movieSession="item"
-        @click="$emit('select-session', item)"
+        v-bind="{
+          ...$attrs,
+          onInput: event => $emit('select-session', event.target.value)
+        }"
+        :movieSession="item"
       />
     </div>
   </div>
@@ -49,9 +52,16 @@ export default {
 <style lang="scss" scoped>
 .movie-session-list {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  align-items: row;
+  width: 100%;
+  height: 80%;
+  color: aliceblue;
+
+  background: rgba(67, 89, 107, 0.6);
+  border-radius: 25px;
 }
 
 .list {
