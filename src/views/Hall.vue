@@ -1,6 +1,6 @@
 <template>
   <div class="tickets-hall">
-    <BookingTicketsHall />
+    <BookingTicketsHall @choose-seat="addToBasket" @clear-local="clearStore" />
   </div>
 </template>
 
@@ -8,8 +8,48 @@
 import BookingTicketsHall from "../components/BookingTicketsHall";
 
 export default {
+  data() {
+    return {
+      totalSeats: [],
+      basketShow: true,
+      seat: {}
+    };
+  },
   name: "Hall",
-  components: { BookingTicketsHall }
+  components: {
+    BookingTicketsHall
+  },
+  methods: {
+    addToBasket(seat) {
+      this.totalSeats.push(seat);
+      localStorage.setItem("key", JSON.stringify(this.totalSeats));
+      this.saveSeats(seat);
+    },
+    clearStore() {},
+    saveSeats() {
+      const parsed = JSON.stringify(this.totalSeats);
+      localStorage.setItem("key", parsed);
+    }
+  },
+  computed: {
+    getTotalPrice() {
+      let totalPrice = 0;
+      this.seats.array.forEach(seat => {
+        totalPrice += seat.seatType * 1;
+      });
+      return totalPrice;
+    }
+  },
+  mounted() {
+    if (localStorage.getItem("key")) {
+      try {
+        this.seatItems = JSON.parse(localStorage.getItem("key"));
+        console.log(this.seatItems);
+      } catch (e) {
+        localStorage.removeItem("key");
+      }
+    }
+  }
 };
 </script>
 

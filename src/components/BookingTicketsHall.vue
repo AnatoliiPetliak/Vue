@@ -5,7 +5,6 @@
 
     <div class="theatre">
       <div
-        v-bind="$attrs"
         class="seat"
         v-for="(item, index) in hallSeats"
         :key="index"
@@ -38,34 +37,32 @@ export default {
         {
           seatNumber: 1,
           seatRow: 1,
-          seatType: "standart",
+          seatType: "medium",
           picked: false
         },
         {
           seatNumber: 2,
           seatRow: 1,
           seatType: "standart",
-          isBooked: true,
           picked: false
         },
         {
           seatNumber: 3,
           seatRow: 1,
           seatType: "standart",
-          picked: false,
-          isBooked: true
+          picked: false
         },
         {
           seatNumber: 4,
           seatRow: 1,
-          seatType: "standart",
+          seatType: "medium",
           isBooked: true,
           picked: false
         },
         {
           seatNumber: 5,
           seatRow: 1,
-          seatType: "standart",
+          seatType: "lux",
           picked: false
         }
       ]
@@ -75,7 +72,11 @@ export default {
     chooseSeat(seat) {
       if (!seat.isBooked) {
         seat.picked = !seat.picked;
-        this.$emit("choose-seat", seat);
+        if (seat.picked) {
+          this.$emit("choose-seat", seat.seatType);
+        } else {
+          this.$emit("clear-local", seat.seatType);
+        }
       }
     }
   }

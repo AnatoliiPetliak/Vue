@@ -13,6 +13,7 @@
 <script>
 import MovieSessionList from "../components/MovieSessionList";
 import navBar from "../Bar/navBar";
+import { mapActions } from "vuex";
 // @ is an alias to /src
 
 export default {
@@ -92,6 +93,8 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["GET_MOVIES_FROM_API"]),
+    ...mapActions(["GET_MOVIESESSION_FROM_API"]),
     selectMovieSession(session) {
       this.selectedMovieSession = session;
     },
@@ -115,6 +118,10 @@ export default {
         movie: this.getMovieName(m.movieId)
       }));
     }
+  },
+  mounted() {
+    this.GET_MOVIES_FROM_API();
+    this.GET_MOVIESESSION_FROM_API();
   }
 };
 </script>

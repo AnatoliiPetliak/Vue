@@ -20,7 +20,7 @@
       />
     </div>
     <MovieDetails
-      v-bind:movieSession="activeItem"
+      :movieSession="activeItem"
       v-show="panelShow"
       @close-modal="hidePanel"
     />
