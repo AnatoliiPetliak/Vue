@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <div class="catalog-list">
+      <p style="color: red">{{ count }}</p>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
       <navBar />
       <MovieSessionList
         :movieSessions="movieSessionsExtended"
@@ -13,7 +16,7 @@
 <script>
 import MovieSessionList from "../components/MovieSessionList";
 import navBar from "../Bar/navBar";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 // @ is an alias to /src
 
 export default {
@@ -22,106 +25,60 @@ export default {
   data() {
     return {
       isInfoPopupVisible: false,
-      selectedMovieSession: {},
-      movies: [
-        {
-          id: 1,
-          image: "1.jpg",
-          name: "Kalone",
-          year: 1983,
-          director: "Anatoliy Petlayk",
-          plot: "Story about"
-        },
-        {
-          id: 2,
-          image: "2.jpg",
-          name: "Frida Kalo",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-
-        {
-          id: 3,
-          image: "3.jpg",
-          name: "Klaustrofobu",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 4,
-          image: "4.jpg",
-          name: "House 3",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        },
-        {
-          id: 5,
-          image: "5.jpg",
-          name: "Mulan",
-          year: 1985,
-          director: "Demaka",
-          plot: "Dawn of developer."
-        }
-      ],
-      movieSessions: [
-        {
-          movieId: 1,
-          movieTime: ["12:00", "15:45"]
-        },
-
-        {
-          movieId: 2,
-          movieTime: ["20:00", "23:45"]
-        },
-
-        {
-          movieId: 3,
-          movieTime: ["20:00", "23:45"]
-        },
-        {
-          movieId: 4,
-          movieTime: ["10:00", "20:00", "23:45"]
-        },
-        {
-          movieId: 5,
-          movieTime: ["10.00", "20:00", "23:45"]
-        }
-      ]
+      selectedMovieSession: {}
     };
   },
   methods: {
+    increment() {
+      this.$store.commit("increment");
+    },
+    decrement() {
+      this.$store.commit("decrement");
+    },
     ...mapActions(["GET_MOVIES_FROM_API"]),
+
     ...mapActions(["GET_MOVIESESSION_FROM_API"]),
+
     selectMovieSession(session) {
       this.selectedMovieSession = session;
     },
     getMovieName(id) {
-      return this.movies.find(m => m.id == id);
+      return this.MOVIES.find(m => m.id == id);
     },
     showPopupInfo() {
       this.isInfoPopupVisible = true;
     },
     closePopupInfo() {
       this.isInfoPopupVisible = false;
-    },
-    showChildArticle(data) {
-      console.log(data);
     }
   },
   computed: {
+    count() {
+      return this.$store.state.count;
+    },
+    ...mapGetters(["MOVIESESSION"]),
+    ...mapGetters(["MOVIES"]),
+
     movieSessionsExtended() {
-      return this.movieSessions.map(m => ({
+      return this.MOVIESESSION.map(m => ({
         ...m,
         movie: this.getMovieName(m.movieId)
       }));
     }
   },
   mounted() {
-    this.GET_MOVIES_FROM_API();
-    this.GET_MOVIESESSION_FROM_API();
+    this.GET_MOVIES_FROM_API().then(response => {
+      if (response.data) {
+        console.log("Data movies arrived");
+        console.log(response.data);
+      }
+    });
+    this.GET_MOVIESESSION_FROM_API().then(response => {
+      if (response.data) {
+        console.log("Data moviesession arrived");
+        console.log(response.data);
+      }
+    });
   }
 };
 </script>

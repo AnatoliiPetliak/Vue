@@ -4,12 +4,17 @@ import axios from 'axios'
 
 
 Vue.use(Vuex);
-let store = new Vuex.Store({
+export default new Vuex.Store({
     state: {
+        count:0,
         movies: [],
-        movieSessions:[]
+        movieSession:[]
     },
     mutations:{
+
+        increment: state => state.count++,
+        decrement: state => state.count--,
+
         SET_MOVIES_TO_STATE:(state, movies) => {
             state.movies = movies;
         },
@@ -20,22 +25,23 @@ let store = new Vuex.Store({
     },
     actions:{
         GET_MOVIES_FROM_API({commit}){
-            return axios('http://localhost:3000/movies', {
-                method: "GET"
-            })
+            return axios
+            .get('http://localhost:3000/movies')
             .then((movies) => {
                 commit('SET_MOVIES_TO_STATE', movies.data);
                 return movies;
             })
+            .catch(error => {console.log("error", error)})
+            
         },
         GET_MOVIESESSION_FROM_API({commit}){
-            return axios('http://localhost:3000/movieSessions', {
-                method: "GET"
-            })
+            return axios
+            .get('http://localhost:3000/movieSessions')
             .then((movieSession) => {
                 commit('SET_MOVIESESSION_TO_STATE', movieSession.data);
                 return movieSession;
             })
+            .catch(error => {console.log("error", error)})
         } 
     },
     getters: {
@@ -51,4 +57,3 @@ let store = new Vuex.Store({
 
 
 
-export default store;

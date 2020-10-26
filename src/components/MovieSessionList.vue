@@ -43,7 +43,7 @@ export default {
       panelShow: false,
       activeItem: {
         movie: {
-          image: "15.jpg"
+          image: "1.jpg"
         }
       }
     };
